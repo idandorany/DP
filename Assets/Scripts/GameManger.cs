@@ -9,26 +9,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        Instance = this;
+       
     }
 
-    public void SwitchTurn()
-    {
-        CurrentPlayer = (CurrentPlayer == 1) ? 2 : 1;
-        Debug.Log("Now it's Player " + CurrentPlayer + "'s turn");
-    }
+    public void SwitchTurn() => CurrentPlayer = (CurrentPlayer == 1) ? 2 : 1;
 
     public void EndGame(int winner)
     {
         GameOver = true;
-        Debug.Log("Player " + winner + " wins!");
+        Debug.Log($"Player {winner} wins!");
     }
 
     public void ResetGame()
